@@ -1,6 +1,6 @@
 const { contextBridge, ipcRenderer } = require('electron')
 
 contextBridge.exposeInMainWorld('electronAPI', {
-  loadFile: () => ipcRenderer.invoke('open-file'),
+  loadFile: (pageName) => ipcRenderer.invoke('open-file', pageName),
   goBack: () => ipcRenderer.send('go-back')
 })

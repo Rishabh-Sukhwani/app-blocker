@@ -17,9 +17,14 @@ function createWindow () {
 }
 
 app.whenReady().then(() => {
-  ipcMain.handle('open-file', handleFileLoad)
+  ipcMain.handle('open-file', (event, pageName) => {
+    // Load the requested HTML file
+    const filePath = `./src/${pageName}`;
+    mainWindow.loadFile(filePath);
+    return filePath;
+  });
   ipcMain.on('go-back', () => {
-    mainWindow.loadFile('index.html');
+    mainWindow.loadFile('index');
   });
   createWindow()
   app.on('activate', function () {
