@@ -4,12 +4,14 @@ const path = require('path')
 var mainWindow;
 
 async function handleFileLoad () {
-  mainWindow.loadFile('./src/second.html');
+  mainWindow.loadFile('index.html');
 }
 
 function createWindow () {
   mainWindow = new BrowserWindow({
     webPreferences: {
+      nodeIntegration: true,
+      //contextIsolation: false,
       preload: path.join(__dirname, 'preload.js')
     }
   })

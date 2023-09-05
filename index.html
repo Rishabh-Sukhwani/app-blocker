@@ -1,15 +1,60 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <title>Dialog</title>
-  </head>
-  <body>
-    <button type="button" id="btn-second" data-page="second">Open a File</button>
-    <button type="button" id="btn-third" data-page="third">Open a File</button>
-    <button type="button" id="btn-fourth" data-page="fourth">Open a File</button>
-    <script src='./src/renderer.js'></script>
-  </body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./src/index.css">
+    <title>Document</title>
+    <h1 class="home-title-main">Application Blocker</h1>
+</head>
+<body class="main">
+
+    <div class="row row-1">
+        <div class="col-auto">
+            <div class="card text-white mb-3" id="card-dashboard" >
+                <div class="card-header"><i class="fs-4 bi-speedometer2"></i>  Dashboard</div>
+                <div class="card-body">
+                  <p class="card-text">Real-time insights into blocked app and website usage, providing a comprehensive view of user activity.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-auto">
+            <div class="card text-white mb-3" id="card-applications">
+                <div class="card-header"><i class="fs-4 bi-window"></i>  Applications</div>
+                <div class="card-body">
+                  <p class="card-text">Customize the list of applications you want to block and set precise schedules to keep distractions at bay.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row row-1">
+        <div class="col-auto">
+            <div class="card text-white  mb-3" id="card-websites">
+                <div class="card-header"><i class="fs-4 bi-globe"></i>  Websites</div>
+                <div class="card-body">
+                  <p class="card-text">Regulate web access effortlessly by adding websites to your blocklist and setting time-based restrictions for enhanced focus.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-auto" id="card-logs">
+            <div class="card text-white mb-3 " >
+                <div class="card-header"><i class="fs-4 bi-file-earmark-text"></i>  Logs</div>
+                <div class="card-body">
+                  <p class="card-text">Review comprehensive logs of app and website usage during restricted intervals, enabling insightful assessment of user behavior.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="./src/renderer.js"></script>
+
+</body>
 </html>

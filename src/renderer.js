@@ -1,19 +1,18 @@
+const btnHome = document.getElementById('card-dashboard')
+const btnDashboard = document.getElementById('card-applications')
+const btnApplications = document.getElementById('card-websites')
+//const filePathElement = document.getElementById('filePath')
 
-const btnSecond = document.getElementById('btn-second')
-const btnThird = document.getElementById('btn-third')
-const btnFourth = document.getElementById('btn-fourth')
-const filePathElement = document.getElementById('filePath')
-
-btnSecond.addEventListener('click', () => {
+btnHome.addEventListener('click', () => {
     window.electronAPI.loadFile('./second.html')
   
 })
 
-btnThird.addEventListener('click', () => {
+btnDashboard.addEventListener('click', () => {
     window.electronAPI.loadFile('./third.html')
 })
 
-btnFourth.addEventListener('click', () => {
+btnApplications.addEventListener('click', () => {
     window.electronAPI.loadFile('./second.html')
   
 })

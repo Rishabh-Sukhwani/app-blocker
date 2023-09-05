@@ -1,6 +1,16 @@
-const { contextBridge, ipcRenderer } = require('electron')
+const { contextBridge, ipcRenderer, Notification } = require('electron');
+const { getInstalledApps } = require('get-installed-apps');
+const { getOpenWindows } = require('active-win');
+const { killApp } = require('./scripts/killApp');
+const { showNotification } = require('./scripts/notification')
+//const { showNotification } = require('electron-main-notification');
+
 
 contextBridge.exposeInMainWorld('electronAPI', {
   loadFile: (pageName) => ipcRenderer.invoke('open-file', pageName),
-  goBack: () => ipcRenderer.send('go-back')
-})
+  goBack: () => ipcRenderer.send('go-back'),
+  installedApps: async () => await getInstalledApps(),
+  getAllOpenWindows: () => getOpenWindows(),
+  killMatchedWindows: (matchedWindows) => killApp(matchedWindows),
+  showBlockedAppNotification: () => showNotification()
+});
