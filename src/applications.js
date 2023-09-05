@@ -2,7 +2,13 @@ const dropdownMenu = document.getElementById('dropdown-menu');
 const searchInput = document.getElementById('search-input');
 const addButton = document.getElementById('add-button');
 const selectedList = document.getElementById('selected-list');
+const backButton = document.getElementById('back-button');
+
 let array = [];
+
+backButton.addEventListener('click', async () => {
+    window.electronAPI.loadFile('../index.html');
+})
 
 function updateDropdown() {
   const searchValue = searchInput.value.toLowerCase();
@@ -96,11 +102,11 @@ async function getAllOpenWindowsWrapper(knownArray) {
         const NOTIFICATION_TITLE = "App Blocker";
         const NOTIFICATION_BODY = "App(s) has been blocked.";
     
-        new window.Notification(NOTIFICATION_TITLE, {body: NOTIFICATION_BODY})
+        //new window.Notification(NOTIFICATION_TITLE, {body: NOTIFICATION_BODY})
         
       }
       
-      const killed = await window.electronAPI.killMatchedWindows(matchedWindows)
+      //const killed = await window.electronAPI.killMatchedWindows(matchedWindows)
       
       
 

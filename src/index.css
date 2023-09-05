@@ -74,7 +74,7 @@ body {
   display: flex;
   justify-content: space-between;
   width: 104%;
-  height: 30px;
+  height: 2rem;
   margin-left: -4%;
   margin-top: 1%;
   color: white;
@@ -85,4 +85,10 @@ body {
 .delete-button {
   margin-right: 10%;
   color: white;
+}
+
+#back-button {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
 }
