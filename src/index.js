@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, dialog } = require('electron')
+const { app, BrowserWindow, ipcMain, Menu, Tray, nativeImage } = require('electron')
 const path = require('path')
 
 var mainWindow;
@@ -8,6 +8,11 @@ async function handleFileLoad () {
 }
 
 function createWindow () {
+  if (!tray) {
+    createTray();
+  }
+
+
   mainWindow = new BrowserWindow({
     webPreferences: {
       nodeIntegration: true,
@@ -17,6 +22,33 @@ function createWindow () {
   })
   mainWindow.loadFile('index.html')
 }
+
+
+let tray = null;
+function createTray() {
+  const icon = path.join(__dirname, '/app.png');
+  const trayicon = nativeImage.createFromPath(icon);
+  tray = new Tray(trayicon.resize({width: 16}));
+  const contextMenu = Menu.buildFromTemplate([
+    {
+      label: 'Show App',
+      click: () => {
+        createWindow()
+      }
+    },
+    {
+      label: 'Quit',
+      click: () => {
+        app.quit()
+      }
+    }
+  ]);
+
+  tray.setContextMenu(contextMenu);
+
+}
+
+
 
 app.whenReady().then(() => {
   ipcMain.handle('open-file', (event, pageName) => {
@@ -35,5 +67,5 @@ app.whenReady().then(() => {
 })
 
 app.on('window-all-closed', function () {
-  if (process.platform !== 'darwin') app.quit()
+  if (process.platform !== 'darwin') {}
 })

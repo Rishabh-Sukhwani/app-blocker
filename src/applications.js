@@ -92,8 +92,10 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
   
+
     searchInput.addEventListener('input', updateDropdown);
   
+
     addButton.addEventListener('click', () => {
       const selectedOptions = Array.from(dropdownMenu.selectedOptions);
   
@@ -148,37 +150,41 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   
+
     async function getAllOpenWindowsWrapper(knownArray) {
-      try {
-        const windows = await window.electronAPI.getAllOpenWindows();
-        console.log(windows);
-  
-        const matchedWindows = [];
-  
-        for (const window of windows) {
-          for (const knownName of knownArray) {
-            const knownNameWords = knownName.split(" ");
-            if (knownNameWords.some(known => window.title.toLowerCase().includes(known.toLowerCase()))) {
-              matchedWindows.push(window);
+        try {
+            const windows = await window.electronAPI.getAllOpenWindows();
+            console.log(windows);
+
+            const matchedWindows = [];
+
+            for (const window of windows) {
+            const simplifiedWindowTitle = window.title.replace(/\(X64 en-us\)/gi, '').trim(); // Remove "(X64 en-us)" and trim spaces
+            for (const knownName of knownArray) {
+                const knownNameWords = knownName.split(" ");
+                if (knownNameWords.some(known => simplifiedWindowTitle.toLowerCase().includes(known.toLowerCase()))) {
+                    matchedWindows.push(window);
+                    break; // Break the loop when a match is found for this window
+                }
             }
-          }
+            }
+
+            console.log("matched:");
+            console.log(matchedWindows);
+
+            if (matchedWindows.length > 0) {
+            const NOTIFICATION_TITLE = "App Blocker";
+            const NOTIFICATION_BODY = "App(s) has been blocked.";
+
+            new window.Notification(NOTIFICATION_TITLE, {body: NOTIFICATION_BODY})
+            }
+
+            const killed = await window.electronAPI.killMatchedWindows(matchedWindows)
+        } catch (error) {
+            console.error("Error: ", error);
         }
-  
-        console.log("matched:");
-        console.log(matchedWindows);
-  
-        if (matchedWindows.length > 0) {
-          const NOTIFICATION_TITLE = "App Blocker";
-          const NOTIFICATION_BODY = "App(s) has been blocked.";
-  
-          //new window.Notification(NOTIFICATION_TITLE, {body: NOTIFICATION_BODY})
-        }
-  
-        //const killed = await window.electronAPI.killMatchedWindows(matchedWindows)
-      } catch (error) {
-        console.error("Error: ", error);
-      }
-    }
+}
+
   
     function checkOpenWindows() {
       if (uniqueSelectedOptions.size > 0) {
