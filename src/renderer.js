@@ -1,19 +1,26 @@
-const btnHome = document.getElementById('card-dashboard')
-const btnDashboard = document.getElementById('card-applications')
-const btnApplications = document.getElementById('card-websites')
+const btnDashboard = document.getElementById('card-dashboard')
+const btnApplications = document.getElementById('card-applications')
+const btnWebsites = document.getElementById('card-websites')
 //const filePathElement = document.getElementById('filePath')
 
-btnHome.addEventListener('click', () => {
-    window.electronAPI.loadFile('./second.html')
-  
-})
-
 btnDashboard.addEventListener('click', () => {
-    window.electronAPI.loadFile('./third.html')
-})
+    window.electronAPI.loadFile('./applications.html');
+});
 
 btnApplications.addEventListener('click', () => {
-    window.electronAPI.loadFile('./second.html')
-  
-})
+    window.electronAPI.loadFile('./applications.html');
+});
 
+btnWebsites.addEventListener('click', () => {
+    window.electronAPI.loadFile('./websites.html');
+});
+
+// const selectedOptionsFromStorage = localStorage.getItem('selectedOptions');
+//   const selectedOptions = selectedOptionsFromStorage ? JSON.parse(selectedOptionsFromStorage) : [];
+//   console.log(selectedOptions);
+  
+
+//   setInterval(() => {
+//     const currentTime = new Date().toLocaleTimeString();
+//     console.log('Current Time:', currentTime);
+// }, 5000);

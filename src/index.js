@@ -1,54 +1,49 @@
-const { app, BrowserWindow, ipcMain, Menu, Tray, nativeImage } = require('electron')
-const path = require('path')
+const { app, BrowserWindow, ipcMain, Menu, Tray, nativeImage, ipcRenderer } = require('electron');
+const path = require('path');
 
-var mainWindow;
+let mainWindow;
+let tray = null;
 
-async function handleFileLoad () {
+function handleFileLoad() {
   mainWindow.loadFile('index.html');
 }
 
-function createWindow () {
+function createWindow() {
   if (!tray) {
     createTray();
   }
-
 
   mainWindow = new BrowserWindow({
     webPreferences: {
       nodeIntegration: true,
       //contextIsolation: false,
-      preload: path.join(__dirname, 'preload.js')
-    }
-  })
-  mainWindow.loadFile('index.html')
+      preload: path.join(__dirname, 'preload.js'),
+    },
+  });
+  mainWindow.loadFile('index.html');
 }
 
-
-let tray = null;
 function createTray() {
   const icon = path.join(__dirname, '/app.png');
   const trayicon = nativeImage.createFromPath(icon);
-  tray = new Tray(trayicon.resize({width: 16}));
+  tray = new Tray(trayicon.resize({ width: 16 }));
   const contextMenu = Menu.buildFromTemplate([
     {
       label: 'Show App',
       click: () => {
-        createWindow()
-      }
+        createWindow();
+      },
     },
     {
       label: 'Quit',
       click: () => {
-        app.quit()
-      }
-    }
+        app.quit();
+      },
+    },
   ]);
 
   tray.setContextMenu(contextMenu);
-
 }
-
-
 
 app.whenReady().then(() => {
   ipcMain.handle('open-file', (event, pageName) => {
@@ -57,15 +52,24 @@ app.whenReady().then(() => {
     mainWindow.loadFile(filePath);
     return filePath;
   });
+
   ipcMain.on('go-back', () => {
     mainWindow.loadFile('index');
   });
-  createWindow()
+  createWindow();
+  // Send a message to the background process to start the app-blocking process
+  //mainWindow.webContents.send('startBackgroundProcess'); // Use emit instead of send
+
+
   app.on('activate', function () {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow()
-  })
-})
+    if (BrowserWindow.getAllWindows().length === 0) createWindow();
+  });
+});
 
 app.on('window-all-closed', function () {
-  if (process.platform !== 'darwin') {}
-})
+  if (process.platform !== 'darwin') {
+    // Add any cleanup or shutdown logic here if needed
+    //mainWindow.hide();
+    
+  }
+});

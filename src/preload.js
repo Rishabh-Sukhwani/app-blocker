@@ -2,8 +2,10 @@ const { contextBridge, ipcRenderer, Notification } = require('electron');
 const { getInstalledApps } = require('get-installed-apps');
 const { getOpenWindows } = require('active-win');
 const { killApp } = require('./scripts/killApp');
-const { showNotification } = require('./scripts/notification')
+const { showNotification } = require('./scripts/notification');
 //const { showNotification } = require('electron-main-notification');
+const { background } = require('./scripts/background');
+const { blockWebsite, getBlockedWebsites } = require('./scripts/blockWebsite');
 
 
 contextBridge.exposeInMainWorld('electronAPI', {
@@ -12,5 +14,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
   installedApps: async () => await getInstalledApps(),
   getAllOpenWindows: () => getOpenWindows(),
   killMatchedWindows: (matchedWindows) => killApp(matchedWindows),
-  showBlockedAppNotification: () => showNotification()
+  showBlockedAppNotification: () => showNotification(),
+  addBlockedWebsite: (websiteToBlock) => blockWebsite(websiteToBlock),
+  readBlockedWebsites: () => getBlockedWebsites()
 });
