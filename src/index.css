@@ -1,34 +1,36 @@
 body {
-  background-color: #40414F;
+  background-color: white;
 }
 
 .home-title-main {
-  color: white;
+  color: black;
   text-align: center;
   font-family: 'Inter';
   font-weight: 800;
+  padding-top: 3%;
 }
 
-.row-1 {
-  padding-top: 40px;
-  padding-left: 30%;
+.row {
+  padding-top: 60px;
+  padding-left: 33%;
 }
 
 .card {
   height: 200px;
   width: 20rem;
-  background-color: gray;
+  background: rgba(0, 0, 0, 0.14);
 }
 
 .card:hover {
   /*height: 205px;*/
   /*width: 20.5rem;*/
-  background-color: #4f5059;
+  background: rgba(0, 0, 0, 0.28);
+  cursor: pointer;
 }
 
 .card-header {
   font-weight: bold;
-  color: #19C37D;
+  color: black;
 }
 
 
@@ -36,28 +38,40 @@ body {
 /*Applications*/
 
 .app-title-main {
+  font-family: 'Inter';
+  font-weight: 600;
   text-align: center;
-  color: white;
+  color: black;
+  padding-top: 2.5rem;
 }
 
 #search-input {
+  font-family: 'Inter';
   width: 50%;
+  height: 3rem;
   margin-left: 25%;
   margin-top: 3.5%;
   border-radius: 4px;
 }
 
 #dropdown-menu {
+  font-family: 'Inter';
   width: 50%;
+  height: 3rem;
   margin-left: 25%;
   margin-top: 1%;
   border-radius: 4px;
 }
 
 #add-button {
+  font-family: 'Inter';
   margin-left: 25%;
   margin-top: 1%;
   width: 50%;
+  height: 3rem;
+  /*background-color: rgb(243, 203, 103);*/
+  background-color: rgb(147, 213, 210);
+  color: black;
 }
 
 .layout {
