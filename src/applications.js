@@ -28,9 +28,9 @@ document.addEventListener('DOMContentLoaded', function () {
     function onFirstLoad() {
 
         uniqueSelectedOptions.forEach(optionText => {
-            const listItem = document.createElement('li');
+            const listItem = document.createElement('div');
             listItem.textContent = optionText;
-      
+            listItem.className = 'list-item';
             // Create a delete button element with Bootstrap Icons
             const deleteButton = document.createElement('a');
             deleteButton.href = '#';
@@ -112,9 +112,10 @@ document.addEventListener('DOMContentLoaded', function () {
   
       // Add unique selected items to the list
       uniqueSelectedOptions.forEach(optionText => {
-        const listItem = document.createElement('li');
+        const listItem = document.createElement('div');
         listItem.textContent = optionText;
-  
+        listItem.className = 'list-item';
+
         // Create a delete button element with Bootstrap Icons
         const deleteButton = document.createElement('a');
         deleteButton.href = '#';
@@ -176,10 +177,10 @@ document.addEventListener('DOMContentLoaded', function () {
             const NOTIFICATION_TITLE = "App Blocker";
             const NOTIFICATION_BODY = "App(s) has been blocked.";
 
-            new window.Notification(NOTIFICATION_TITLE, {body: NOTIFICATION_BODY})
+            //new window.Notification(NOTIFICATION_TITLE, {body: NOTIFICATION_BODY})
             }
 
-            const killed = await window.electronAPI.killMatchedWindows(matchedWindows)
+            //const killed = await window.electronAPI.killMatchedWindows(matchedWindows)
         } catch (error) {
             console.error("Error: ", error);
         }
