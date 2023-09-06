@@ -119,4 +119,4 @@ function removeBlockedWebsite(websiteToRemove, callback) {
     });
 }
 
-module.exports = { blockWebsite, getBlockedWebsites };
+module.exports = { blockWebsite, getBlockedWebsites, removeBlockedWebsite };

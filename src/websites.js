@@ -34,6 +34,16 @@ async function populateSelectedList() {
                 // Find the index of the item to remove
                 const indexToRemove = blockedWebsites.indexOf(element);
 
+                const websiteToRemove = element;
+                //console.log("Here");
+                window.electronAPI.deleteBlockedWebsite(websiteToRemove, (err) => {
+                    if (err) {
+                        console.error('Error:', err);
+                    } else {
+                        console.log(`Successfully removed ${websiteToRemove}.`);
+                    }
+                });
+
                 if (indexToRemove !== -1) {
                     // Remove the item from the array
                     blockedWebsites.splice(indexToRemove, 1);

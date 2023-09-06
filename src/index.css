@@ -5,6 +5,8 @@ body {
 .home-title-main {
   color: white;
   text-align: center;
+  font-family: 'Inter';
+  font-weight: 800;
 }
 
 .row-1 {

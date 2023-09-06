@@ -5,7 +5,7 @@ const { killApp } = require('./scripts/killApp');
 const { showNotification } = require('./scripts/notification');
 //const { showNotification } = require('electron-main-notification');
 const { background } = require('./scripts/background');
-const { blockWebsite, getBlockedWebsites } = require('./scripts/blockWebsite');
+const { blockWebsite, getBlockedWebsites, removeBlockedWebsite } = require('./scripts/blockWebsite');
 
 
 contextBridge.exposeInMainWorld('electronAPI', {
@@ -16,5 +16,6 @@ contextBridge.exposeInMainWorld('electronAPI', {
   killMatchedWindows: (matchedWindows) => killApp(matchedWindows),
   showBlockedAppNotification: () => showNotification(),
   addBlockedWebsite: (websiteToBlock) => blockWebsite(websiteToBlock),
-  readBlockedWebsites: () => getBlockedWebsites()
+  readBlockedWebsites: () => getBlockedWebsites(),
+  deleteBlockedWebsite: (websiteToRemove) => removeBlockedWebsite(websiteToRemove)
 });
