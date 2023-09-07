@@ -16,8 +16,9 @@ async function populateSelectedList() {
         selectedList.innerHTML = '';
 
         blockedWebsites.forEach(element => {
-            const listItem = document.createElement('li');
+            const listItem = document.createElement('div');
             listItem.textContent = element;
+            listItem.className = 'list-item';
 
             const deleteButton = document.createElement('a');
             deleteButton.href = '#';
