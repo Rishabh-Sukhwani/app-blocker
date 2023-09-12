@@ -19,7 +19,20 @@ window.onload = function () {
   
     // Load selected options from local storage
     loadSelectedOptionsFromLocalStorage();
-  
+    
+    const numberOfInstalledApps = localStorage.getItem('numberOfInstalledApps');
+    console.log(numberOfInstalledApps);
+    const numberOfInstalledAppsCard = document.getElementById('number-installed-apps-text');
+    numberOfInstalledAppsCard.innerText = numberOfInstalledApps
+
+    const numberofBlockedAppsCard = document.getElementById('number-blocked-apps-text');
+    numberofBlockedAppsCard.innerText = uniqueSelectedOptions.size
+
+    const numberOfAttempts = localStorage.getItem('numberOfAttempts');
+    console.log(numberOfAttempts);
+    const numberOfAttemptsCard = document.getElementById('number-attempts-text');
+    numberOfAttemptsCard.innerText = numberOfAttempts
+
     // Function to get the number of open windows
     async function getAllOpenWindowsWrapper() {
       try {

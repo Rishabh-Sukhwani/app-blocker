@@ -4,7 +4,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const addButton = document.getElementById('add-button');
     const selectedList = document.getElementById('selected-list');
     const backButton = document.getElementById('back-button');
-  
+    var attemptsCounter = 0;
+    localStorage.setItem("numberOfAttempts", attemptsCounter);
+
     let array = [];
     const uniqueSelectedOptions = new Set(); // Create a Set to store unique selected options
   
@@ -174,9 +176,10 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log(matchedWindows);
 
             if (matchedWindows.length > 0) {
-            const NOTIFICATION_TITLE = "App Blocker";
-            const NOTIFICATION_BODY = "App(s) has been blocked.";
-
+              const NOTIFICATION_TITLE = "App Blocker";
+              const NOTIFICATION_BODY = "App(s) has been blocked.";
+              attemptsCounter++;
+              localStorage.setItem("numberOfAttempts", attemptsCounter);
             //new window.Notification(NOTIFICATION_TITLE, {body: NOTIFICATION_BODY})
             }
 
@@ -204,6 +207,7 @@ document.addEventListener('DOMContentLoaded', function () {
       displayNames.sort();
       array = displayNames; // Update the global array
       updateDropdown();
+      localStorage.setItem("numberOfInstalledApps", displayNames.length)
       loadSelectedOptionsFromLocalStorage(); // Load selected options from localStorage
       console.log(uniqueSelectedOptions);
       onFirstLoad();

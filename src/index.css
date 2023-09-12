@@ -9,6 +9,7 @@ body {
   font-weight: 800;
   font-size: 3rem;
   padding-top: 3%;
+  text-shadow: 3px 3px 16px rgba(34, 22, 158, 0.35);
 }
 
 .row {
@@ -31,6 +32,7 @@ body {
   background: rgba(0, 0, 0, 0.28);
   cursor: pointer;
   border: 1px solid black;
+  box-shadow: 3px 3px 25px -3px rgba(34, 22, 158, 0.61);
 }
 
 .card-header {
@@ -145,5 +147,32 @@ body {
 .chart-container {
   border: 1px black solid;
   border-radius: 5px;
+  box-shadow: 3px 3px 17px -3px rgba(34, 22, 158, 0.61);
 }
 
+.cards-info {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 2.5%;
+}
+
+.card-info {
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 1%;
+  font-family: "Inter";
+  font-weight: 800;
+  height: 30%;
+  width: 20rem;
+  background: rgba(0, 0, 0, 0.14);
+  font-family: 'Inter';
+  border: 1px black solid;
+  border-radius: 5px;
+}
+
+.card-info:hover {
+  /*height: 205px;*/
+  /*width: 20.5rem;*/
+  background: rgba(0, 0, 0, 0.28);
+  border: 1px solid black;
+}
