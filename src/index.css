@@ -1,5 +1,5 @@
 body {
-  background-color: white;
+  background-color: whitesmoke;
 }
 
 .home-title-main {
@@ -7,18 +7,22 @@ body {
   text-align: center;
   font-family: 'Inter';
   font-weight: 800;
+  font-size: 3rem;
   padding-top: 3%;
 }
 
 .row {
   padding-top: 60px;
-  padding-left: 33%;
+  padding-left: 28%;
 }
 
 .card {
+  position: relative;
   height: 200px;
   width: 20rem;
   background: rgba(0, 0, 0, 0.14);
+  font-family: 'Inter';
+  box-shadow: 3px 3px 17px -3px rgba(34, 22, 158, 0.61);
 }
 
 .card:hover {
@@ -26,11 +30,13 @@ body {
   /*width: 20.5rem;*/
   background: rgba(0, 0, 0, 0.28);
   cursor: pointer;
+  border: 1px solid black;
 }
 
 .card-header {
+  font-family: 'Inter';
   font-weight: bold;
-  color: black;
+  color: rgb(54, 54, 243);
 }
 
 
@@ -117,7 +123,7 @@ body {
 
 .delete-button {
   margin-right: 10%;
-  color: black;
+  color: red;
 }
 
 #back-button {
@@ -125,3 +131,19 @@ body {
   bottom: 10px;
   left: 10px;
 }
+
+
+/*Dashboard*/
+
+.charts-row {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 2.5%;
+  
+}
+
+.chart-container {
+  border: 1px black solid;
+  border-radius: 5px;
+}
+

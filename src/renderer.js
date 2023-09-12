@@ -4,7 +4,7 @@ const btnWebsites = document.getElementById('card-websites')
 //const filePathElement = document.getElementById('filePath')
 
 btnDashboard.addEventListener('click', () => {
-    window.electronAPI.loadFile('./applications.html');
+    window.electronAPI.loadFile('./dashboard.html');
 });
 
 btnApplications.addEventListener('click', () => {
