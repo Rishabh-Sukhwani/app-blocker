@@ -31,7 +31,12 @@ window.onload = function () {
     const numberOfAttempts = localStorage.getItem('numberOfAttempts');
     console.log(numberOfAttempts);
     const numberOfAttemptsCard = document.getElementById('number-attempts-text');
-    numberOfAttemptsCard.innerText = numberOfAttempts
+    numberOfAttemptsCard.innerText = numberOfAttempts;
+
+    const numberOfBlockedWebsites = localStorage.getItem('numberOfBlockedWebsites');
+    console.log(numberOfBlockedWebsites);
+    const numberOfBlockedWebsitesCard = document.getElementById('number-blocked-websites-text');
+    numberOfBlockedWebsitesCard.innerText = numberOfBlockedWebsites;
 
     // Function to get the number of open windows
     async function getAllOpenWindowsWrapper() {

@@ -11,7 +11,8 @@ backButton.addEventListener('click', async () => {
 async function populateSelectedList() {
     try {
         const blockedWebsites = await window.electronAPI.readBlockedWebsites();
-
+        const numberOfBlockedWebsites = blockedWebsites.length;
+        localStorage.setItem('numberOfBlockedWebsites', numberOfBlockedWebsites);
         // Clear the selectedList before adding new items
         selectedList.innerHTML = '';
 
