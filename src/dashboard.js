@@ -43,6 +43,18 @@ window.onload = function () {
         throw error;
       }
     }
+
+    async function getUsageCPUWrapper() {
+        try {
+            await window.electronAPI.getUsageCPU();
+            usage = localStorage.getItem('CPUusage');
+            console.log("Usage here: ", usage);
+            return usage;
+        } catch (error) {
+            console.error("Error: ", error);
+            throw error;
+        }
+    }
   
     // Initialize CanvasJS charts
     const dps = [];
@@ -59,39 +71,51 @@ window.onload = function () {
       }],
     });
   
+    var dps2 = [];
     const chart2 = new CanvasJS.Chart("chartContainer2", {
       title: {
-        text: "Opened Apps 2"
+        text: "CPU usage"
       },
       data: [{
         type: "line",
-        dataPoints: dps
+        dataPoints: dps2
       }],
     });
   
     let xVal = 0;
   
     // Function to update the chart
-    function updateChart(count) {
-      count = count || 1;
+    // Function to update the chart
+function updateChart(count) {
+    count = count || 1;
   
-      for (let j = 0; j < count; j++) {
-        getAllOpenWindowsWrapper().then(yVal => {
+    for (let j = 0; j < count; j++) {
+      getAllOpenWindowsWrapper().then(yVal => {
+        getUsageCPUWrapper().then(yVal2 => {
+          console.log("yVal2", yVal2);
+  
           dps.push({
             x: xVal,
             y: yVal
           });
-          if (dps.length > dataLength) {
-            dps.shift();
-          }
+  
+          dps2.push({
+            x: xVal,
+            y: parseFloat(yVal2) // Parse yVal2 as a float
+          });
+  
+          
+  
           xVal++;
           chart.render();
           chart2.render();
         }).catch(error => {
           console.error("Error: ", error);
         });
-      }
+      });
     }
+  }
+  
   
     // Initial chart update
     updateChart(dataLength);
