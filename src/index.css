@@ -176,3 +176,25 @@ body {
   background: rgba(0, 0, 0, 0.28);
   border: 1px solid black;
 }
+
+
+/*Logs*/
+.logs-info {
+  background: rgba(109, 225, 134, 0.28);
+  height: 3.5rem;
+}
+
+.logs-warn {
+  background: rgba(217, 225, 109, 0.28);
+  height: 3.5rem;
+}
+
+.logs-debug {
+  background: rgba(109, 165, 225, 0.28);
+  height: 3.5rem;
+}
+
+.logs-error {
+  background: rgba(225, 109, 109, 0.28);
+  height: 3.5rem;
+}

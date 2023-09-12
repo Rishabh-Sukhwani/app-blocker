@@ -8,7 +8,7 @@ const { background } = require('./scripts/background');
 const { blockWebsite, getBlockedWebsites, removeBlockedWebsite } = require('./scripts/blockWebsite');
 const { cpuUsageWrapper } = require('./scripts/getCPUinfo');
 const { logToLogFile } = require('./scripts/logger');
-
+const { readLog } = require('./scripts/readLog');
 
 contextBridge.exposeInMainWorld('electronAPI', {
   loadFile: (pageName) => ipcRenderer.invoke('open-file', pageName),
@@ -21,5 +21,6 @@ contextBridge.exposeInMainWorld('electronAPI', {
   readBlockedWebsites: () => getBlockedWebsites(),
   deleteBlockedWebsite: (websiteToRemove) => removeBlockedWebsite(websiteToRemove),
   getUsageCPU: () => cpuUsageWrapper(),
-  logMessage: (logLevel, message, additionalData = {}) => logToLogFile(logLevel, message, additionalData = {})
+  logMessage: (logLevel, message, additionalData = {}) => logToLogFile(logLevel, message, additionalData = {}),
+  readLogs: () => readLog()
 });

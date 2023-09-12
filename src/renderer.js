@@ -1,6 +1,7 @@
-const btnDashboard = document.getElementById('card-dashboard')
-const btnApplications = document.getElementById('card-applications')
-const btnWebsites = document.getElementById('card-websites')
+const btnDashboard = document.getElementById('card-dashboard');
+const btnApplications = document.getElementById('card-applications');
+const btnWebsites = document.getElementById('card-websites');
+const btnLogs = document.getElementById('card-logs');
 //const filePathElement = document.getElementById('filePath')
 
 btnDashboard.addEventListener('click', () => {
@@ -14,6 +15,12 @@ btnApplications.addEventListener('click', () => {
 btnWebsites.addEventListener('click', () => {
     window.electronAPI.loadFile('./websites.html');
 });
+
+btnLogs.addEventListener('click', () => {
+    window.electronAPI.loadFile('./logs.html');
+})
+
+
 
 // const selectedOptionsFromStorage = localStorage.getItem('selectedOptions');
 //   const selectedOptions = selectedOptionsFromStorage ? JSON.parse(selectedOptionsFromStorage) : [];
