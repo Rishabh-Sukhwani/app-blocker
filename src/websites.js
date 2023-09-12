@@ -40,9 +40,9 @@ async function populateSelectedList() {
                 //console.log("Here");
                 window.electronAPI.deleteBlockedWebsite(websiteToRemove, (err) => {
                     if (err) {
-                        console.error('Error:', err);
+                        window.electronAPI.logMessage('ERROR', err);
                     } else {
-                        console.log(`Successfully removed ${websiteToRemove}.`);
+                        window.electronAPI.logMessage('INFO', 'Removed: ', websiteToRemove);
                     }
                 });
 
@@ -68,7 +68,7 @@ async function populateSelectedList() {
         });
     } catch (err) {
         // Handle errors
-        console.error(err);
+        window.electronAPI.logMessage('ERROR', err);
     }
 }
 

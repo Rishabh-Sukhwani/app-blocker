@@ -14,14 +14,14 @@ window.onload = function () {
           uniqueSelectedOptions.add(option);
         });
       }
-      console.log(uniqueSelectedOptions);
+      window.electronAPI.logMessage('INFO', 'selected options: ', uniqueSelectedOptions);
     }
   
     // Load selected options from local storage
     loadSelectedOptionsFromLocalStorage();
     
     const numberOfInstalledApps = localStorage.getItem('numberOfInstalledApps');
-    console.log(numberOfInstalledApps);
+    window.electronAPI.logMessage('INFO', 'number of installed apps: ', numberOfInstalledApps);
     const numberOfInstalledAppsCard = document.getElementById('number-installed-apps-text');
     numberOfInstalledAppsCard.innerText = numberOfInstalledApps
 
@@ -29,12 +29,12 @@ window.onload = function () {
     numberofBlockedAppsCard.innerText = uniqueSelectedOptions.size
 
     const numberOfAttempts = localStorage.getItem('numberOfAttempts');
-    console.log(numberOfAttempts);
+    window.electronAPI.logMessage('INFO', 'Number of attempts: ', numberOfAttempts);
     const numberOfAttemptsCard = document.getElementById('number-attempts-text');
     numberOfAttemptsCard.innerText = numberOfAttempts;
 
     const numberOfBlockedWebsites = localStorage.getItem('numberOfBlockedWebsites');
-    console.log(numberOfBlockedWebsites);
+    window.electronAPI.logMessage('INFO', 'Number blocked websites: ', numberOfBlockedWebsites);
     const numberOfBlockedWebsitesCard = document.getElementById('number-blocked-websites-text');
     numberOfBlockedWebsitesCard.innerText = numberOfBlockedWebsites;
 
@@ -53,10 +53,10 @@ window.onload = function () {
         try {
             await window.electronAPI.getUsageCPU();
             usage = localStorage.getItem('CPUusage');
-            console.log("Usage here: ", usage);
+            window.electronAPI.logMessage('INFO', 'CPU usage: ', usage);
             return usage;
         } catch (error) {
-            console.error("Error: ", error);
+            window.electronAPI.logMessage('ERROR', error);
             throw error;
         }
     }
@@ -97,7 +97,7 @@ function updateChart(count) {
     for (let j = 0; j < count; j++) {
       getAllOpenWindowsWrapper().then(yVal => {
         getUsageCPUWrapper().then(yVal2 => {
-          console.log("yVal2", yVal2);
+            window.electronAPI.logMessage('INFO', 'yVal2: ', yVal2);
   
           dps.push({
             x: xVal,
@@ -115,7 +115,7 @@ function updateChart(count) {
           chart.render();
           chart2.render();
         }).catch(error => {
-          console.error("Error: ", error);
+            window.electronAPI.logMessage('ERROR', error);
         });
       });
     }
