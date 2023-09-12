@@ -42,7 +42,7 @@ async function populateSelectedList() {
                     if (err) {
                         window.electronAPI.logMessage('ERROR', err);
                     } else {
-                        window.electronAPI.logMessage('INFO', 'Removed: ', websiteToRemove);
+                        window.electronAPI.logMessage('INFO', `Removed: ${websiteToRemove}`);
                     }
                 });
 
