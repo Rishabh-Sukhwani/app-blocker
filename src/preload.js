@@ -3,14 +3,13 @@ const { getInstalledApps } = require('get-installed-apps');
 const { getOpenWindows } = require('active-win');
 const { killApp } = require('./scripts/killApp');
 const { showNotification } = require('./scripts/notification');
-//const { showNotification } = require('electron-main-notification');
+// const { showNotification } = require('electron-main-notification');
 const { background } = require('./scripts/background');
 const { blockWebsite, getBlockedWebsites, removeBlockedWebsite } = require('./scripts/blockWebsite');
 const { cpuUsageWrapper } = require('./scripts/getCPUinfo');
 const { logToLogFile } = require('./scripts/logger');
 const { readLog } = require('./scripts/readLog');
 const { isValidKey } = require('./scripts/checkKey');
-
 
 contextBridge.exposeInMainWorld('electronAPI', {
   loadFile: (pageName) => ipcRenderer.invoke('open-file', pageName),

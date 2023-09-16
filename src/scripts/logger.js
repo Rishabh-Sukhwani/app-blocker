@@ -1,12 +1,13 @@
 const fs = require('fs');
 const path = require('path');
 
-function logToLogFile(logLevel, message, additionalData = {}) {
+function logToLogFile (logLevel, message, additionalData = {}) {
   const timestamp = new Date().toISOString();
   const logMessage = `${timestamp} [${logLevel}] - ${message}`;
 
   // Include additional data if provided
   if (Object.keys(additionalData).length > 0) {
+    // eslint-disable-next-line no-const-assign
     logMessage += '\nAdditional Data: ' + JSON.stringify(additionalData, null, 2);
   }
 

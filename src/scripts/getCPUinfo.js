@@ -1,16 +1,16 @@
-var os 	= require('os-utils');
+const os = require('os-utils');
 
-function cpuUsageWrapper() {
+function cpuUsageWrapper () {
+  let usage;
 
-    var usage;
+  os.cpuUsage(function (v) {
+    console.log('CPU Usage (%): ' + v * 100);
+    // eslint-disable-next-line no-undef
+    localStorage.setItem('CPUusage', v * 100);
+    usage = v * 100;
+  });
 
-    os.cpuUsage(function(v){
-        console.log( 'CPU Usage (%): ' + v*100 );
-        localStorage.setItem('CPUusage', v*100);
-        usage = v*100;
-    });
-
-    return usage;
+  return usage;
 }
 
 module.exports = { cpuUsageWrapper };

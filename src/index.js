@@ -4,11 +4,11 @@ const path = require('path');
 let mainWindow;
 let tray = null;
 
-function handleFileLoad() {
+function handleFileLoad () {
   mainWindow.loadFile('index.html');
 }
 
-function createWindow() {
+function createWindow () {
   if (!tray) {
     createTray();
   }
@@ -16,14 +16,14 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     webPreferences: {
       nodeIntegration: true,
-      //contextIsolation: false,
-      preload: path.join(__dirname, 'preload.js'),
-    },
+      // contextIsolation: false,
+      preload: path.join(__dirname, 'preload.js')
+    }
   });
   mainWindow.loadFile('src/login.html');
 }
 
-function createTray() {
+function createTray () {
   const icon = path.join(__dirname, '/app.png');
   const trayicon = nativeImage.createFromPath(icon);
   tray = new Tray(trayicon.resize({ width: 16 }));
@@ -32,14 +32,14 @@ function createTray() {
       label: 'Show App',
       click: () => {
         createWindow();
-      },
+      }
     },
     {
       label: 'Quit',
       click: () => {
         app.quit();
-      },
-    },
+      }
+    }
   ]);
 
   tray.setContextMenu(contextMenu);
@@ -58,8 +58,7 @@ app.whenReady().then(() => {
   });
   createWindow();
   // Send a message to the background process to start the app-blocking process
-  //mainWindow.webContents.send('startBackgroundProcess'); // Use emit instead of send
-
+  // mainWindow.webContents.send('startBackgroundProcess'); // Use emit instead of send
 
   app.on('activate', function () {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
@@ -69,7 +68,7 @@ app.whenReady().then(() => {
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') {
     // Add any cleanup or shutdown logic here if needed
-    //mainWindow.hide();
-    
+    // mainWindow.hide();
+
   }
 });

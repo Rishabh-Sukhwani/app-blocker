@@ -1,11 +1,12 @@
+/* eslint-disable no-undef */
 document.addEventListener('DOMContentLoaded', function () {
   const dropdownMenu = document.getElementById('dropdown-menu');
   const searchInput = document.getElementById('search-input');
   const addButton = document.getElementById('add-button');
   const selectedList = document.getElementById('selected-list');
   const backButton = document.getElementById('back-button');
-  var attemptsCounter = 0;
-  localStorage.setItem("numberOfAttempts", attemptsCounter);
+  let attemptsCounter = 0;
+  localStorage.setItem('numberOfAttempts', attemptsCounter);
 
   let array = [];
   const uniqueSelectedOptions = new Set(); // Create a Set to store unique selected options
@@ -15,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // Function to load uniqueSelectedOptions from localStorage on initial page load
-  function loadSelectedOptionsFromLocalStorage() {
+  function loadSelectedOptionsFromLocalStorage () {
     const selectedOptionsFromStorage = localStorage.getItem('selectedOptions');
     if (selectedOptionsFromStorage) {
       uniqueSelectedOptions.clear(); // Clear the current set
@@ -26,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.electronAPI.logMessage('INFO', 'Selected options loaded from localStorage');
   }
 
-  function onFirstLoad() {
+  function onFirstLoad () {
     uniqueSelectedOptions.forEach(optionText => {
       const listItem = document.createElement('div');
       listItem.textContent = optionText;
@@ -68,13 +69,13 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Function to save uniqueSelectedOptions to localStorage
-  function saveSelectedOptionsToLocalStorage() {
+  function saveSelectedOptionsToLocalStorage () {
     const selectedOptionsArray = Array.from(uniqueSelectedOptions);
     localStorage.setItem('selectedOptions', JSON.stringify(selectedOptionsArray));
     window.electronAPI.logMessage('INFO', 'Selected options saved to localStorage');
   }
 
-  function updateDropdown() {
+  function updateDropdown () {
     const searchValue = searchInput.value.toLowerCase();
 
     // Clear existing options
@@ -84,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
     for (let i = 0; i < array.length; i++) {
       const optionText = array[i].toLowerCase();
       if (optionText.includes(searchValue)) {
-        const option = document.createElement("option");
+        const option = document.createElement('option');
         option.textContent = array[i];
         dropdownMenu.appendChild(option);
       }
@@ -150,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.electronAPI.logMessage('INFO', 'Items added to the selected list');
   });
 
-  async function getAllOpenWindowsWrapper(knownArray) {
+  async function getAllOpenWindowsWrapper (knownArray) {
     try {
       const windows = await window.electronAPI.getAllOpenWindows();
       window.electronAPI.logMessage('DEBUG', 'List of all open windows:', { windows });
@@ -160,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function () {
       for (const window of windows) {
         const simplifiedWindowTitle = window.title.replace(/\(X64 en-us\)/gi, '').trim();
         for (const knownName of knownArray) {
-          const knownNameWords = knownName.split(" ");
+          const knownNameWords = knownName.split(' ');
           if (knownNameWords.some(known => simplifiedWindowTitle.toLowerCase().includes(known.toLowerCase()))) {
             matchedWindows.push(window);
             break;
@@ -171,19 +172,19 @@ document.addEventListener('DOMContentLoaded', function () {
       window.electronAPI.logMessage('INFO', 'Matched windows:', { matchedWindows });
 
       if (matchedWindows.length > 0) {
-        const NOTIFICATION_TITLE = "App Blocker";
-        const NOTIFICATION_BODY = "App(s) has been blocked.";
+        const NOTIFICATION_TITLE = 'App Blocker';
+        const NOTIFICATION_BODY = 'App(s) has been blocked.';
         attemptsCounter++;
-        localStorage.setItem("numberOfAttempts", attemptsCounter);
+        localStorage.setItem('numberOfAttempts', attemptsCounter);
         // new window.Notification(NOTIFICATION_TITLE, {body: NOTIFICATION_BODY})
       }
     } catch (error) {
-      console.error("Error: ", error);
+      console.error('Error: ', error);
       window.electronAPI.logMessage('ERROR', 'Error in getAllOpenWindowsWrapper:', { error });
     }
   }
 
-  function checkOpenWindows() {
+  function checkOpenWindows () {
     if (uniqueSelectedOptions.size > 0) {
       getAllOpenWindowsWrapper(uniqueSelectedOptions);
     } else {
@@ -200,14 +201,14 @@ document.addEventListener('DOMContentLoaded', function () {
     displayNames.sort();
     array = displayNames;
     updateDropdown();
-    localStorage.setItem("numberOfInstalledApps", displayNames.length);
+    localStorage.setItem('numberOfInstalledApps', displayNames.length);
     loadSelectedOptionsFromLocalStorage();
     window.electronAPI.logMessage('INFO', 'Initial app data loaded');
     onFirstLoad();
   });
 
   // Function to initialize everything
-  function initialize() {
+  function initialize () {
     loadSelectedOptionsFromLocalStorage();
     // Set an interval to call checkOpenWindows every 10 seconds
     window.checkInterval = setInterval(checkOpenWindows, 10000);

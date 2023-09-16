@@ -2,30 +2,27 @@ const btnDashboard = document.getElementById('card-dashboard');
 const btnApplications = document.getElementById('card-applications');
 const btnWebsites = document.getElementById('card-websites');
 const btnLogs = document.getElementById('card-logs');
-//const filePathElement = document.getElementById('filePath')
+// const filePathElement = document.getElementById('filePath')
 
 btnDashboard.addEventListener('click', () => {
-    window.electronAPI.loadFile('./dashboard.html');
+  window.electronAPI.loadFile('./dashboard.html');
 });
 
 btnApplications.addEventListener('click', () => {
-    window.electronAPI.loadFile('./applications.html');
+  window.electronAPI.loadFile('./applications.html');
 });
 
 btnWebsites.addEventListener('click', () => {
-    window.electronAPI.loadFile('./websites.html');
+  window.electronAPI.loadFile('./websites.html');
 });
 
 btnLogs.addEventListener('click', () => {
-    window.electronAPI.loadFile('./logs.html');
-})
-
-
+  window.electronAPI.loadFile('./logs.html');
+});
 
 // const selectedOptionsFromStorage = localStorage.getItem('selectedOptions');
 //   const selectedOptions = selectedOptionsFromStorage ? JSON.parse(selectedOptionsFromStorage) : [];
 //   console.log(selectedOptions);
-  
 
 //   setInterval(() => {
 //     const currentTime = new Date().toLocaleTimeString();
