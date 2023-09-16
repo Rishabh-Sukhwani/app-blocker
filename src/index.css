@@ -14,7 +14,7 @@ body {
 
 .row {
   padding-top: 60px;
-  padding-left: 28%;
+  padding-left: 33%;
 }
 
 .card {
@@ -197,4 +197,43 @@ body {
 .logs-error {
   background: rgba(225, 109, 109, 0.28);
   height: 3.5rem;
+}
+
+/* Login */
+
+#login-container {
+  border: 1px black solid;
+  width: 30%;
+  display: block;
+  margin: auto;
+  height: 150%;
+  margin-top: 10%;
+  border-radius: 25px;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+#app-title-login {
+  margin-top: 15%;
+}
+
+.key-input {
+  margin: auto;
+  display: block;
+  text-align: center;
+  margin-top: 1%;
+  background-color: whitesmoke;
+  border: 1px black solid;
+  border-radius: 5px;
+}
+
+.button-login {
+  margin: auto;
+  display: block;
+  border-radius: 7px;
+  background-color: rgb(70, 70, 300);
+  margin-bottom: 30%;
+}
+
+.button-login:hover {
+  background-color: rgb(54, 54, 243);
 }

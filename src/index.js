@@ -20,7 +20,7 @@ function createWindow() {
       preload: path.join(__dirname, 'preload.js'),
     },
   });
-  mainWindow.loadFile('index.html');
+  mainWindow.loadFile('src/login.html');
 }
 
 function createTray() {
