@@ -14,7 +14,8 @@ body {
 
 .row {
   padding-top: 60px;
-  padding-left: 33%;
+  display: flex;
+  justify-content: center;
 }
 
 .card {
