@@ -203,7 +203,7 @@ body {
 /* Login */
 
 #login-container {
-  border: 1px black solid;
+  border: 2px black solid;
   width: 30%;
   display: block;
   margin: auto;
@@ -223,7 +223,7 @@ body {
   text-align: center;
   margin-top: 1%;
   background-color: whitesmoke;
-  border: 1px black solid;
+  border: 2px black solid;
   border-radius: 5px;
 }
 
