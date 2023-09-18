@@ -1,5 +1,7 @@
 <h1 align="center">Application Blocker</h1>
 
+![](assets/applications.gif)
+
 Application blocker is a desktop app built using electronJS which runs html, css, js and nodejs. It can be used for blocking usage for apps and websites effectively working like an app to control distractions. It also has built in features like a dashboard and a section to view logs.
 
 ## Installation
