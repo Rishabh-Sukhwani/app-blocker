@@ -21,6 +21,7 @@ function createWindow () {
     }
   });
   mainWindow.loadFile('src/login.html');
+  mainWindow.maximize();
 }
 
 function createTray () {

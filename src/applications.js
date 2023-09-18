@@ -176,7 +176,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const NOTIFICATION_BODY = 'App(s) has been blocked.';
         attemptsCounter++;
         localStorage.setItem('numberOfAttempts', attemptsCounter);
-        // new window.Notification(NOTIFICATION_TITLE, {body: NOTIFICATION_BODY})
+        new window.Notification(NOTIFICATION_TITLE, {body: NOTIFICATION_BODY});
+        const killed = await window.electronAPI.killMatchedWindows(matchedWindows);
       }
     } catch (error) {
       console.error('Error: ', error);
